@@ -1,71 +1,116 @@
-###################
-What is CodeIgniter
-###################
+# Sistem Penjualan Online
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+Sistem Penjualan Online adalah aplikasi berbasis web yang dikembangkan menggunakan CodeIgniter 3 untuk mengelola transaksi penjualan secara online. Proyek ini menggunakan database MySQL dan dapat dijalankan di lingkungan lokal menggunakan XAMPP.
 
-*******************
-Release Information
-*******************
+## Persyaratan
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+- XAMPP atau server lokal lainnya dengan PHP dan MySQL
+- CodeIgniter 3.1.13
+- Web browser modern (Chrome, Firefox, Edge, dll.)
 
-**************************
-Changelog and New Features
-**************************
+## Instalasi
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+### 1. Clone atau Download Proyek
 
-*******************
-Server Requirements
-*******************
+Unduh atau clone repositori ini ke dalam folder **htdocs** XAMPP:
 
-PHP version 5.6 or newer is recommended.
+```sh
+cd C:\xampp\htdocs
+```
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+```sh
+git clone https://github.com/username/sistempenjualanonline.git
+```
 
-************
-Installation
-************
+atau unduh dan ekstrak ke dalam folder **htdocs**.
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
+### 2. Konfigurasi Database
 
-*******
-License
-*******
+1. Buka **phpMyAdmin** melalui `http://localhost/phpmyadmin/`
+2. Buat database baru dengan nama **sistempenjualanonline**
+3. Impor file **sistempenjualanonline.sql** ke dalam database yang baru dibuat:
+   - Klik **Import**
+   - Pilih file **sistempenjualanonline.sql** dari folder proyek
+   - Klik **Go**
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+### 3. Konfigurasi CodeIgniter
 
-*********
-Resources
-*********
+1. Buka file konfigurasi database di `application/config/database.php`
+2. Sesuaikan konfigurasi berikut sesuai dengan database yang dibuat:
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+```php
+$active_group = 'default';
+$query_builder = TRUE;
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+$db['default'] = array(
+    'dsn'   => '',
+    'hostname' => 'localhost',
+    'username' => 'root', // Sesuaikan jika ada password
+    'password' => '', // Default kosong jika menggunakan XAMPP
+    'database' => 'sistempenjualanonline',
+    'dbdriver' => 'mysqli',
+    'dbprefix' => '',
+    'pconnect' => FALSE,
+    'db_debug' => (ENVIRONMENT !== 'production'),
+    'cache_on' => FALSE,
+    'cachedir' => '',
+    'char_set' => 'utf8',
+    'dbcollat' => 'utf8_general_ci',
+    'swap_pre' => '',
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'stricton' => FALSE,
+    'failover' => array(),
+    'save_queries' => TRUE
+);
+```
 
-***************
-Acknowledgement
-***************
+3. Buka file `application/config/config.php` dan ubah base URL sesuai dengan proyek Anda:
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+```php
+$config['base_url'] = 'http://localhost/sistempenjualanonline/';
+```
+
+### 4. Menjalankan Aplikasi
+
+1. Jalankan XAMPP dan aktifkan Apache serta MySQL.
+2. Akses aplikasi melalui browser:
+
+```
+http://localhost/sistempenjualanonline/
+```
+
+## Akun Default
+
+Setelah mengimpor database, gunakan akun berikut untuk login:
+
+- **Username:** admin
+- **Password:** admin123
+
+## Struktur Folder Utama
+
+```
+/application  # Folder utama CodeIgniter
+/assets       # Folder untuk CSS, JavaScript, dan gambar
+/database     # Folder berisi file SQL
+/system       # Sistem inti CodeIgniter
+/index.php    # File utama untuk menjalankan aplikasi
+```
+
+## Fitur Utama
+
+- Manajemen Produk
+- Manajemen Pelanggan
+- Manajemen Pesanan
+- Laporan Penjualan
+- Sistem Login & Hak Akses
+
+## Lisensi
+
+Proyek ini bersifat open-source dan bebas digunakan.
+
+---
+
+Dikembangkan dengan ❤️ menggunakan CodeIgniter 3.
+
+"Rahmat Mulia"
